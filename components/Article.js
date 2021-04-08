@@ -86,7 +86,25 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: 'Water, Earth, Fire, Air',
+    date: 'Long ago-',
+    firstParagraph: `-the four nations lived together in harmony. Then everything changed when the Fire Nation attacked. `,
+
+    secondParagraph: `Only the Avatar, master of all four elements, could stop them, but when the world needed him most, he vanished. `,
+
+    thirdParagraph: `A hundred years passed and my brother Sokka and I discovered the new Avatar, an airbender named Aang. Although his airbending skills were great, he had a lot to learn before he was ready to save anyone. But I believe, Aang can save the world.`
+  },
+  {
+    title: 'Captains Log',
+    date: 'Stardate 3183.3',
+    firstParagraph: `Our present mission, a routine geological survey of type 4 asteroids, is nearing completion. The cruise has been uneventful and we are now approaching the final asteroid in our assigned sector a full 72 hours ahead of schedule.`,
+
+    secondParagraph: `Unusual incidents have continued to plague our crew. Even the perceptive Mr. Spock has fallen victim to these simple minded pranks. As these little surprises have grown more and more frequent, our crew members have found them less and less amusing. The situation has reached the point where friends are accusing friends. The entire crew is on edge, myself included. `,
+
+    thirdParagraph: `Somehow Spock managed to switch on our emergency air before collapsing from the effects of the gas. The fresh air quickly revived us, although it will be exhausted in another six hours. We must cure our computer by then or there's no telling what we'll be forced to breathe next`
+  },
 ];
 
 /*
@@ -114,3 +132,48 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParagraph}) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const paragraph1 = document.createElement('p');
+  const paragraph2 = document.createElement('p');
+  const paragraph3 = document.createElement('p');
+  const expansion = document.createElement('button');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(paragraph1);
+  article.appendChild(paragraph2);
+  article.appendChild(paragraph3);
+  article.appendChild(expansion);
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expansion.classList.add('expandButton');
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  paragraph1.textContent = firstParagraph;
+  paragraph2.textContent = secondParagraph;
+  paragraph3.textContent = thirdParagraph;
+  expansion.textContent = ('+')
+
+  expansion.addEventListener('click', (event) => {
+    console.log(event.target)
+    article.classList.toggle('article-open')
+  })
+
+  return article;
+}
+
+const articleElements = data.map((dataObj) => {
+  return articleMaker(dataObj)
+});
+
+articleElements.forEach((articleElement) => {
+  document.body.appendChild(articleElement);
+})
+
+// console.log(data[0].title)
