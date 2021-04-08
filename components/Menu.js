@@ -44,9 +44,20 @@ function menuMaker(menuArray) {
     menuList.appendChild(test);
   });
 
-
-
+  document.body.appendChild(popUpMenu)
   return popUpMenu;
 } 
 
-console.log(menuMaker(menuItems));
+const workingMenu = menuMaker(menuItems);
+
+const menuButton = document.querySelector(".menu-button");
+
+  menuButton.addEventListener("click", function (event) {
+    workingMenu.classList.toggle("menu--open");
+    console.log('Testing menuButton');
+});
+
+console.log(menuMaker(menuItems))
+
+
+
